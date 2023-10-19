@@ -23,9 +23,17 @@ function App() {
     setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }))
   }
 
+  function submitHandler(event){
+    event.preventDefault();
+
+    console.log("Finally printing the value of form Data");
+    console.log(formData);
+  }
+
   return (
     <div className='flex flex-col items-center mt-2'>
-      <form>
+
+      <form onSubmit={submitHandler}>
 
         <label htmlFor="firstName">First Name</label>
         <br />
@@ -38,7 +46,9 @@ function App() {
           onChange={changeHandler}
           className='outline'
         />
+
         <br />
+
         <label htmlFor="lastName">Last Name</label>
         <br />
         <input
@@ -130,7 +140,7 @@ function App() {
           name="postalCode"
           id="postalCode"
           placeholder='postal code'
-          value={formData.firstName}
+          value={formData.postalCode}
           onChange={changeHandler}
           className='outline'
         />
@@ -192,7 +202,7 @@ function App() {
           <input
             type="radio"
             id="pushEverything"
-            name="pushNotification"
+            name="pushNotifications"
             value="Everything"
             onChange={changeHandler}
           />
@@ -204,7 +214,7 @@ function App() {
           <input
             type="radio"
             id="pushEmail"
-            name="pushNotification"
+            name="pushNotifications"
             value="Same as Email"
             onChange={changeHandler}
           />
@@ -216,7 +226,7 @@ function App() {
           <input
             type="radio"
             id="pushNothing"
-            name="pushNotification"
+            name="pushNotifications"
             value="No Push Notification"
             onChange={changeHandler}
           />
@@ -225,15 +235,7 @@ function App() {
 
         </fieldset>
 
-
-
-
-
-
-
-
-
-
+        <button className='bg-blue-500 text-white font-bold rounded py-2 px-4'>Save</button>
 
       </form>
     </div>
